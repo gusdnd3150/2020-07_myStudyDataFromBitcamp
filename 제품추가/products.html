@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>제품 목록 조회</title>
+</head>
+<body>
+	<form name="frmProd" method="post" action="/WebStudy/products" encType="UTF-8">
+	제품번호 :<input type="text" name="prod_id">
+	공급업체번호: <input type="text" name="vend_id">
+	<input type='hidden' name='command' value='showProd'   />
+	<input type="submit" name="조회">
+	<input type="button"  onClick="location.href='/WebStudy/study06/inputProd.html'" value="제품추가">
+	</form>
+</body>
+</html>

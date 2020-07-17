@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript">
+	function fn_validate(){	
+		var frmProdInput = document.frmProdInput;//<form> 태그의 name 속성으로 <form> 태그 객체를 받아 옵니다.
+		//<form> 태그 내 <input> 태그의 name 속성으로 입력한 값을 받아 옵니다.
+		var prod_id=frmProdInput.prod_id.value;
+		var vend_id=frmProdInput.vend_id.value;
+		var prod_name=frmProdInput.prod_name.value;
+		var prod_price=frmProdInput.prod_price.value;
+		var prod_desc=frmProdInput.prod_desc.value;
+		
+		if (prod_id.length==0||prod_id=="") {
+			alert("제품번호를 입력해주세요.")
+		}else if (vend_id.length==0||vend_id=="") {
+			alert("공급업체번호를 입력해주세요.")
+		}else if(prod_name.length==0||prod_name==""){
+			alert("제품명을 입력해주세요.")
+		}else if(prod_price.length==0||prod_price==""){	
+			alert("제품가격을 입력해주세요.")
+		}else if(prod_desc.length==0||prod_desc==""){	
+			alert("제품가격을 입력해주세요.")
+		}else{
+			frmProdInput.method="post";//<form> 태그의 전송 방식을 post로 설정합니다.
+			frmProdInput.action="/WebStudy/products";//action 속성을 서블릿 매핑 이름인 cust로 설정합니다.
+			frmProdInput.submit();//자바스크립트에서 서블릿으로 전송합니다.
+		}
+	}
+</script>
+
+<title>제품 추가</title>
+</head>
+<body>
+	<form name="frmProdInput" method="post" action="/WebStudy/products" encType="UTF-8">
+	제품번호 :<input type="text" name="prod_id"><br>
+	제품명 :<input type="text" name="prod_name"><br>
+	제품가격 :<input type="number" name="prod_price"><br>
+	제품설명 :<input type="text" name="prod_desc"><br>
+	공급업체번호 : <input type="text" name="vend_id"><br>
+	<input type="button" onClick="fn_validate()" value="제품추가"> 
+	<input type='hidden' name='command' value='inputProd'   />
+	</form>
+</body>
+</html>
