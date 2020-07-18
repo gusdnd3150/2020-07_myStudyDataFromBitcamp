@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>고객번호 입력</title>
+	<script type="text/javascript">
+	function fn_searchMember(){
+		var searchMember = document.searchMember;
+		var searchid = searchMember.searchid.value;
+		if(searchid.length == 0 || searchid == ""){
+			alert("고객번호는 필수입니다.");
+		} else{
+			searchMember.method = "post";
+			searchMember.action = "/WebStudy/study05/search";
+			searchMember.submit();
+		}
+	}
+	</script>
+</head>
+<body>
+  <form name="searchMember">
+	<h1>고객번호 입력창 </h1><br>
+		
+	고객번호 : <input type="text" name="searchid">
+		
+	<input type="button" value="조회하기" onClick="fn_searchMember()">
+	<input type="reset" value="다시 입력">
+	<input type="hidden" name="command" value="searchMember">
+  </form>
+
+</body>
+</html>
