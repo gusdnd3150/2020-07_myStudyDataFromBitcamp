@@ -11,7 +11,7 @@
   
       <table border="1" align ="center"></table>
     
-    <tr align ="center" bgcolor =#99ccff">
+    <tr align ="center" bgcolor =#99ccff">                  배열이 사용되었다 
     <td>${membersList[1].id}</td>
     <td>${membersList[1].pwd}</td>
     <td>${membersList[1].name}</td>
