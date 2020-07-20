@@ -7,15 +7,15 @@
 
 <%
    String   id=request.getParameter("id");
-   String  pwd = request.getParameter("pwd");
+   String  pwd = request.getParameter("pwd");            입력된 회원정보를 가져옴
    String  name = request.getParameter("name");
    String  email = request.getParameter("email");
  
   
-   MemberBean  m =  new MemberBean(id, pwd, name, email);
+   MemberBean  m =  new MemberBean(id, pwd, name, email);        맴버객체 생성 후 속성을 addmember메소드의 파라미터로 넣음
    MemberDAO  memberDAO=new MemberDAO();
-   memberDAO.addMember(m);
-   List membersList = memberDAO.listMembers();	
+   memberDAO.addMember(m); 
+   List membersList = memberDAO.listMembers();	            전체 회원을 조회
 %>
 <!DOCTYPE html>
 <html>
@@ -43,8 +43,8 @@
 	  </tr>
 	<%
 	}else{
-	   for( int i = 0; i < membersList.size(); i++ ) {
-	      MemberBean bean = (MemberBean) membersList.get(i);
+	   for( int i = 0; i < membersList.size(); i++ ) {              반복문 사용하여 list에 저장된 Bean객체를 하나씩 불러옴
+	      MemberBean bean = (MemberBean) membersList.get(i);          가져온 정보를 get으로 받는다
 	%>
 	   <tr align="center">
 	       <td><%=bean.getId() %></td>
