@@ -7,8 +7,8 @@
 <%
    String cookieName = "id";
    Cookie cookie = new Cookie(cookieName, "hongkd");      //쿠키를 생성하는 과정
-   cookie.setMaxAge(60*2); 
-   cookie.setValue("kimkd");
+   cookie.setMaxAge(60*2);                            쿠키 유효시간 설정
+   cookie.setValue("kimkd");                             쿠키값 value값 변경
    response.addCookie(cookie);
 %><P>
 
