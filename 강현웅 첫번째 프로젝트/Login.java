@@ -45,21 +45,21 @@ public class Login extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		MemberDAO dao = new MemberDAO();
-		String command = request.getParameter("command");
+		String command = request.getParameter("command");           커맨드 받아옴 
 
 		if ("modify".equals(command)) {
-			HttpSession session = request.getSession();
-			System.out.println(dao.listMembers().size());
+			HttpSession session = request.getSession();       modify 시 이룹을 진행한다   
+			System.out.println(dao.listMembers().size());         listMembers를 재사용해서 입력받은 값과 비교를 할 것임
 
-			MemberVO vo = (MemberVO) session.getAttribute("member");
-			String pwd = request.getParameter("modiPass");
-			vo.setPassword(pwd);
-			dao.modPassward(vo);
+			MemberVO vo = (MemberVO) session.getAttribute("member");      세션에 객체로 저장했기때문에 객체로 다시 꺼내왔다
+			String pwd = request.getParameter("modiPass");             
+			vo.setPassword(pwd);                                         vo객체의 setpass를 사용자 입력값으로 다시 셋해주었다
+			dao.modPassward(vo);                                          dao의 수정 sql로 비밀번호를 수정
 
-			session.invalidate();// 로그아웃시 세션에있는 정보를 삭제 해주어야함
+			session.invalidate();// 로그아웃시 세션에있는 정보를 삭제 해주어야함 
 			response.sendRedirect("mainlogin.jsp");
 		} else if ("logout".equals(command)) {
-			HttpSession session = request.getSession();
+			HttpSession session = request.getSession();                 로그아웃 시 세션에 있는 정보를 삭제 후 메인으로 다시 페이지 이동
 			session.invalidate();
 			RequestDispatcher dispatch = request.getRequestDispatcher("mainlogin.jsp");
 			dispatch.forward(request, response);
