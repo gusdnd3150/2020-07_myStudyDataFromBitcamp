@@ -1,0 +1,86 @@
+<!DOCTYPE html><!DOCTYPE html PUBLIC "-//W3C//DTD Xhtml 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title></title>
+    <style>
+        body {
+            font-size: 9pt;
+            font-family: "굴림";
+        }
+        div, p, ul, li {
+
+        }
+        ul.menu {
+            padding: 10px;
+            list-style: none;
+            border: 1px #000 solid;
+        }
+        ul.menu li {
+            border: 1px #eeeeee solid;
+            margin: 10px;
+        }
+
+        li.select {
+            background-color: #ccc;
+        }
+    </style>
+
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#add').click(function () {
+                var data = '<li>' + $("#menuName").val() + '</li>';
+                $('.menu').append(data);
+            })
+
+            $('#up').click(function () {
+                var $select = $('ul li.select')
+                for(var i=0;i<$select.length;i++){
+                    $select[i].previousElementSibling.before($select[i]);
+                }
+            })
+            $('#down').click(function () {
+                var $select = $('ul li.select');
+                for(var i=0;i<$select.length;i++){
+                    $select[$select.length-1].nextElementSibling.after($select[i]);
+                }
+            })
+
+            $('#update').click(function(){
+                var data = '<li>' + $("#menuName").val() + '</li>';
+                $('.select').replaceWith(data);
+            })
+
+            $('#remove').click(function () {
+                $('.select').remove();
+            })
+            
+            $('ul').on('click',"li", function () {
+                if (this.hasAttribute("class")) {
+                    this.removeAttribute("class");
+                } else {
+                    this.setAttribute("class", "select");
+                }
+            })
+        });
+
+    </script>
+</head>
+
+<body>
+<div>
+    <input type="text" id="menuName" />
+    <button id="add">추가</button>
+    <button id="update">수정</button>
+    <button id="remove">삭제</button>
+    <button id="up">UP</button>
+    <button id="down">DOWN</button>
+</div>
+<ul class="menu">
+    <li>111</li>
+    <li class='select'>222</li>
+</ul>
+</body>
+
+</html>
