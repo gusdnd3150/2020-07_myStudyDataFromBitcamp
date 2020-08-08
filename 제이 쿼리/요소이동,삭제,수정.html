@@ -34,13 +34,13 @@
                 $('.menu').append(data);
             })
 
-            $('#up').click(function () {
+            $('#up').click(function () {                위로 요소이동
                 var $select = $('ul li.select')
                 for(var i=0;i<$select.length;i++){
                     $select[i].previousElementSibling.before($select[i]);
                 }
             })
-            $('#down').click(function () {
+            $('#down').click(function () {                아래로 요소 이동
                 var $select = $('ul li.select');
                 for(var i=0;i<$select.length;i++){
                     $select[$select.length-1].nextElementSibling.after($select[i]);
@@ -49,18 +49,18 @@
 
             $('#update').click(function(){
                 var data = '<li>' + $("#menuName").val() + '</li>';
-                $('.select').replaceWith(data);
+                $('.select').replaceWith(data);              selct이름의 class text값을 변경
             })
 
-            $('#remove').click(function () {
-                $('.select').remove();
+            $('#remove').click(function () {              
+                $('.select').remove();              select이름의 class가 있다면 삭제
             })
             
             $('ul').on('click',"li", function () {
-                if (this.hasAttribute("class")) {
+                if (this.hasAttribute("class")) {                선택시 이미 class="select"가 있다면 삭제 즉, 선택된 아이를 다시 선택할경우 선택 해제
                     this.removeAttribute("class");
                 } else {
-                    this.setAttribute("class", "select");
+                    this.setAttribute("class", "select");      선택시 class속성으로 select를 추가
                 }
             })
         });
