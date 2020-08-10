@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	function search() {
+		var command = 'search';
+		var id = $("#_id").val(); // 제이쿼리사용하여 접근
+		if (id == '') {
+			alert("ID를 입력하세요");
+		}
+		$.ajax({
+			type : "post", //타입이다
+			async : true,
+			url : "json2", //값을 전달할 주소이다
+			dataType : "text", //값 타입이다
+			data : {
+				id : id,
+				command : command
+			},
+
+			success : function(data, textStatus) { //데이터 전송이 성공할 경우 data로 JSON문자열이 들어온다
+				var jsonInfo = JSON.parse(data); // parse를통해 JSON문자열을 자바스크립트 객체로 바꾸고있다
+
+				for ( var i in jsonInfo.member) {
+					$('#cust_id').attr("value", jsonInfo.member[i].id);
+					$('#password').attr("value", jsonInfo.member[i].pwd);
+					$('#name').attr("value", jsonInfo.member[i].name);
+				}
+			},
+			error : function(data, textStatus) {
+				alert("에러가 발생했습니다.");
+			},
+			complete : function(data, textStatus) {
+				//alert("작업을완료 했습니다");
+			}
+		}); //end ajax	 
+	}
+
+	function add() {
+		$('#cust_id').attr("value", "");
+		$('#password').attr("value", "");
+		$('#name').attr("value", "");
+	}
+
+	function save() {
+		var id = $("#cust_id").val();
+		var pwd = $('#password').val();
+		var name = $('#name').val();
+		var command = '';
+
+		if (id == '' || pwd == '' || name == '') {
+			alert("3가지는 필수 항목입니다.");
+			return;
+		} else {
+			command = "save";
+		}
+		$.ajax({
+			type : "post",
+			async : true,
+			url : "json2",
+			dataType : "text",
+			data : {
+				cust_id : id,
+				pwd : pwd,
+				name : name,
+				command : command
+			},
+		});
+	}
+
+	function before() {
+		var command = 'before';
+		var id = $("#_id").val(); // 제이쿼리사용하여 접근
+		if (id == '') {
+			alert("ID를 입력하세요");
+		}
+		$.ajax({
+			type : "post", //타입이다
+			async : true,
+			url : "json2", //값을 전달할 주소이다
+			dataType : "text", //값 타입이다
+			data : {
+				id : id,
+				command : command
+			},
+			success : function(data, textStatus) {
+				var jsonInfo = JSON.parse(data); 
+				for ( var i in jsonInfo.member) {
+					$('#cust_id').attr("value", jsonInfo.member[i].id);
+					$('#password').attr("value", jsonInfo.member[i].pwd);
+					$('#name').attr("value", jsonInfo.member[i].name);
+				}
+			},
+			error : function(data, textStatus) {
+				alert("이전 아이디가 없습니다.");
+			},
+			complete : function(data, textStatus) {
+			}
+		});	 
+	}
+	function after() {
+		var command = 'after';
+		var id = $("#_id").val(); // 제이쿼리사용하여 접근
+		if (id == '') {
+			alert("ID를 입력하세요");
+		}
+		$.ajax({
+			type : "post", //타입이다
+			async : true,
+			url : "json2", //값을 전달할 주소이다
+			dataType : "text", //값 타입이다
+			data : {
+				id : id,
+				command : command
+			},
+			success : function(data, textStatus) {
+				var jsonInfo = JSON.parse(data); 
+
+				for ( var i in jsonInfo.member) {
+					$('#cust_id').attr("value", jsonInfo.member[i].id);
+					$('#password').attr("value", jsonInfo.member[i].pwd);
+					$('#name').attr("value", jsonInfo.member[i].name);
+				}
+			},
+			error : function(data, textStatus) {
+				alert("이후 아이디가 없습니다.");
+			},
+			complete : function(data, textStatus) {
+			}
+		});	 
+	}
+</script>
+</head>
+<body>
+	<div>
+		<input type="text" id="_id" /> 
+		<input type="button"onclick="search()" value="조회" /> 
+        <input type="button"onclick="add()" value="추가" /> 
+        <input type="button" onclick="save()"value="저장" /> 
+		 <input type="button" onclick="before()" value="이전" />
+		<input type="button" onclick="after()" value="이후" />
+	</div>
+	<div>
+		고객 아이디 <input type="text" id="cust_id"><br>
+		 고객 PW <input type="text" id="password"><br> 
+		 고객 이름 <input type="text" id="name">
+	</div>
+</body>
+</html>
