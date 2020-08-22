@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+
+<style>
+.tab-menu {
+	list-style: none;
+	height: 80px;
+}
+
+.tab-menu li {
+	width: 99px;
+	height: 40px;
+	background-position-y: 0;
+	text-indent: -1000px;
+	overflow: hidden;
+	display: inline-block;
+	float: left;
+}
+
+.tab-menu li:hover {
+	background-position-y: -40px;
+}
+
+.tab-menu li.select {
+	background-position-y: -80px;
+	height: 80px;
+}
+
+.tab-menu li.menuitem1 {
+	background-image: url(image/newbtn.bar.1.png);
+}
+
+.tab-menu li.menuitem2 {
+	background-image: url(image/newbtn.bar.2.png);
+}
+
+.tab-menu li.menuitem3 {
+	background-image: url(image/newbtn.bar.3.png);
+}
+
+.tab-menu li.menuitem4 {
+	background-image: url(image/newbtn.bar.4.png);
+}
+
+.tab-menu li.menuitem5 {
+	background-image: url(image/newbtn.bar.5.png);
+}
+
+.tab-menu li.menuitem6 {
+	background-image: url(image/newbtn.bar.6.png);
+}
+</style>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+
+$(document).ready(function() {
+	$('#tabMenu1').on("click","li",function() {
+		if ($('#tabMenu1 li').is('#select')) {
+			$('#tabMenu1 li').removeAttr('id');//속성에 id가 있으면 삭제
+			$('#tabMenu1 li').attr("style", '');
+		} 
+			$(this).attr("id", "select"); //선택시 아이디 추가
+			$(this).attr("style", 'background-position-y:-80px; height : 80px');
+	});
+	
+	$('#tabMenu2').on("click","li",function() {
+		if ($('#tabMenu2 li').is('#select2')) {
+			$('#tabMenu2 li').removeAttr('id');//속성에 id가 있으면 삭제
+			$('#tabMenu2 li').attr("style", '');
+		} 
+			$(this).attr("id", "select2"); //선택시 아이디 추가
+			$(this).attr("style", 'background-position-y:-80px; height : 80px');
+	});
+});
+
+</script>
+</head>
+
+<body>
+	<p>첫 번째 탭메뉴</p>
+	<ul class="tab-menu" id="tabMenu1">
+		<li class="menuitem1">google</li>
+		<li class="menuitem2">facebook</li>
+		<li class="menuitem3">pinterest</li>
+		<li class="menuitem4">twitter</li>
+		<li class="menuitem5">airbnb</li>
+		<li class="menuitem6">path</li>
+	</ul>
+	<p>두 번째 탭메뉴</p>
+	<ul class="tab-menu" id="tabMenu2">
+		<li class="menuitem1">google</li>
+		<li class="menuitem2">facebook</li>
+		<li class="menuitem3">pinterest</li>
+		<li class="menuitem4">twitter</li>
+		<li class="menuitem5">airbnb</li>
+		<li class="menuitem6">path</li>
+	</ul>
+</body>
+</html>
