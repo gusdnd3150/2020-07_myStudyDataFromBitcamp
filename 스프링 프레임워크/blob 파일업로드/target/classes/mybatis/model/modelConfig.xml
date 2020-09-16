@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration 	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+	    <!-- <typeAlias type="project.hm.hmp001_d000.vo.Hmp001_d000VO"  alias="hmp001_d000VO" /> -->
+		<typeAlias type="project.E_P002_D003.vo.E_P002_D003ProductsVO" alias="e_P002_D003ProductsVO"/>
+		<typeAlias type="project.E_P002_D003.file.E_P002_D003PhotoVO" alias="e_P002_D003PhotoVO"/>
+	</typeAliases> 
+</configuration>
