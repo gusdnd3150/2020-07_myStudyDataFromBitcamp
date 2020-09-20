@@ -82,7 +82,7 @@ public class E_P002_D003ProductsControllerImpl  implements E_P002_D003ProductsCo
 		mav.setViewName("/product/productForm");
 		try {
 				e_P002_D003ProductsService.addProduct(dataMap);// 상품상세내용 추가
-				e_P002_D003ProductsService.saveImage(articleMap);
+				e_P002_D003ProductsService.saveImage(articleMap);   //상품에 대한 이미지 추가
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
@@ -90,7 +90,7 @@ public class E_P002_D003ProductsControllerImpl  implements E_P002_D003ProductsCo
 	}
 
 	@Override
-	@RequestMapping(value = "/E_P002_D003/mainprodList.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/E_P002_D003/mainprodList.do", method = { RequestMethod.GET, RequestMethod.POST })      //상품 메인화면
 	public ModelAndView getimageList(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
@@ -98,10 +98,10 @@ public class E_P002_D003ProductsControllerImpl  implements E_P002_D003ProductsCo
 
 		List<String> encodinglist = new ArrayList<String>();     //다중이미지 출력
 		try {
-			List<E_P002_D003PhotoVO> list =e_P002_D003ProductsService.getImage();
-			System.out.println(list.size());
+			List<E_P002_D003PhotoVO> list =e_P002_D003ProductsService.getImage(); //dao에서 리스트 가져옴
+			System.out.println(list.size());                                  
 			for(int i=0;i<list.size();i++) {
-				byte[] encoded = Base64.getEncoder().encode(list.get(i).getCONTENT());
+				byte[] encoded = Base64.getEncoder().encode(list.get(i).getCONTENT());        //이미지 하나하나 인코딩해준다
 				String encodedString = new String(encoded);		
 				encodinglist.add(encodedString);
 			}
